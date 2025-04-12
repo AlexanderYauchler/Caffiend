@@ -9,21 +9,21 @@ public class PaymentService {
         transactionHistory = new ArrayList<>();
     }
 
-    public boolean paySeller(String userId, String sellerId, double amount, PaymentInfo paymentInfo) {
-        // Create the payment record using the full card number and other details
-        String paymentRecord = "User " + userId +
-                " with card number " + paymentInfo.cardNo +
-                " paid $" + amount + " to Seller " + sellerId;
-        paymentDetails.add(paymentRecord);
-        transactionHistory.add(paymentRecord);
-        System.out.println(paymentRecord);
-        return true;
+    public boolean paySeller(User user, Seller seller, double amount, PaymentInfo paymentInfo) {
+		// Use the username from the User object
+		String paymentRecord = "User " + user.username +
+				" with card number " + paymentInfo.cardNo +
+				" paid $" + amount + " to Seller " + seller.name;
+		paymentDetails.add(paymentRecord);
+		transactionHistory.add(paymentRecord);
+		System.out.println(paymentRecord);
+		return true;
     }
 
-    public void depositProfit(String sellerId, double amount) {
-        String depositRecord = "Deposited $" + amount + " to Seller " + sellerId + "'s account.";
-        transactionHistory.add(depositRecord);
-        System.out.println(depositRecord);
+   public void depositProfit(Seller seller, double amount) {
+		String depositRecord = "Deposited $" + amount + " to Seller " + seller.name + "'s account.";
+		transactionHistory.add(depositRecord);
+		System.out.println(depositRecord);
     }
 
     public void showTransactionHistory() {
