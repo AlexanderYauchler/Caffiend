@@ -30,14 +30,6 @@ public class User {
         this.cart = cart;
     }
 
-    public boolean loginUser(Database db) {
-        return false;
-    }
-
-    public boolean signUpUser(Database db) {
-        return false;
-    }
-
     public void updateName(String name) {
         this.name = name;
     }
@@ -91,16 +83,5 @@ public class User {
         return "User " + username + "\n-----------------------\n Name : " + name
                 + "\n Email : " + email + "\n Password : " + password;
 
-    }
-
-    public ArrayList<String> searchProducts(String query) {
-        return new ArrayList<>();
-    }
-    
-    public boolean purchaseProducts() {
-        return false;
-    }
-    public boolean logOffUser(){
-        return false;
     }
 }

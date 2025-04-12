@@ -29,13 +29,14 @@ public class ShippingService {
     private List<ShippingRecord> shippingHistory;
 
     public ShippingService(Database db) {
+        System.out.println("Initialized shipping service connection!");
         this.database = db;
         this.shippingHistory = new ArrayList<>();
     }
 
     // Method to simulate shipping a package for a user
     public void shipPackage(String username, Order order) {
-        ShippingAddress shippingAddress = database.getUserByName(username).getShippingAddress();
+        ShippingAddress shippingAddress = database.getUserByUsername(username).getShippingAddress();
 
         if (shippingAddress == null) {
             System.out.println("Shipping address not found for user: " + username);
