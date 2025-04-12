@@ -18,4 +18,9 @@ public class ShippingAddress {
         this.country = country;
         this.zip = zip;
     }
+
+    @Override
+    public String toString() {
+        return city + ", " + state + ", " + country + ", " + zip + ", " + streetAddress;
+    }
 }
