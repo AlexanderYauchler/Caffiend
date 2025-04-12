@@ -22,6 +22,10 @@ public class Order {
         idNum++;
     }
 
+    public ArrayList<Product> getCart() {
+        return cart;
+    }
+
     public boolean viewOrder() {
         if (cart.size() != quantities.size() || cart.isEmpty()) return false;
 

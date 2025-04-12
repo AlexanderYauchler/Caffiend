@@ -1,5 +1,68 @@
+import java.util.*;
+
 public class ShippingService {
-//    ArrayList orderContents
+
+    // Internal class to hold shipping records
+    static class ShippingRecord {
+        String username;
+        ShippingAddress address;
+        ArrayList<Product> items;
+        Date shippedOn;
+
+        public ShippingRecord(String username, ShippingAddress address, ArrayList<Product> items, Date shippedOn) {
+            this.username = username;
+            this.address = address;
+            this.items = new ArrayList<Product>();
+            this.shippedOn = shippedOn;
+        }
+
+        @Override
+        public String toString() {
+            return "Shipped to: " + username +
+                    " | Address: " + address +
+                    " | Items: " + items +
+                    " | Date: " + shippedOn;
+        }
+    }
+
+    private Database database;
+    private List<ShippingRecord> shippingHistory;
+
+    public ShippingService(Database db) {
+        this.database = db;
+        this.shippingHistory = new ArrayList<>();
+    }
+
+    // Method to simulate shipping a package for a user
+    public void shipPackage(String username, Order order) {
+        ShippingAddress shippingAddress = database.getUserByName(username).getShippingAddress();
+
+        if (shippingAddress == null) {
+            System.out.println("Shipping address not found for user: " + username);
+            return;
+        }
+
+        if (order == null || order.getCart().isEmpty()) {
+            System.out.println("No items to ship for user: " + username);
+            return;
+        }
+
+        // Simulate shipping
+        ShippingRecord record = new ShippingRecord(username, shippingAddress, order.getCart(), new Date());
+        shippingHistory.add(record);
+
+        System.out.println("Package shipped successfully to " + username);
+    }
+
+    // Method to show shipping history for a specific user
+    public List<String> showShippingHistory(String username) {
+        List<String> history = new ArrayList<>();
+        for (ShippingRecord record : shippingHistory) {
+            if (record.username.equals(username)) {
+                history.add(record.toString());
+            }
+        }
+
+        return history;
+    }
 }
-
-

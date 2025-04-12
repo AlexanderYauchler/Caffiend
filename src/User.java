@@ -58,6 +58,10 @@ public class User {
         this.shippingAddress = shippingAddress;
     }
 
+    public ShippingAddress getShippingAddress() {
+        return shippingAddress;
+    }
+
     public void updatePaymentInformation(PaymentInfo paymentInformation) {
         this.paymentInformation = paymentInformation;
     }
@@ -85,7 +89,7 @@ public class User {
     @Override
     public String toString() {
         return "User " + username + "\n-----------------------\n Name : " + name
-                + "\n Email : " + email + "\n Password : " + password;:wa
+                + "\n Email : " + email + "\n Password : " + password;
 
     }
 
