@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Seller {
     String name;
@@ -10,6 +11,8 @@ public class Seller {
     ArrayList<Product> products;
     ArrayList<Product> soldProducts;
     PaymentInfo paymentInformation;
+
+    private UUID sUUID;
 
     Seller(
             String name,
@@ -25,23 +28,30 @@ public class Seller {
         this.name = name;
         this.email = email;
         this.username = username;
+        this.sUUID = UUID.randomUUID();
         this.password = password;
         this.shippingAddress = shippingAddress;
         this.paymentInformation = paymentInformation;
         this.products = products;
         this.soldProducts = soldProducts;
     }
-
+    public boolean loginSeller(){
+        return false;
+    }
     public boolean updateProfileDetails(){
         return false;
     }
-
     public boolean updateListingDetails(){
         return false;
     }
-
     public int viewSellHistory(){
-        //P ast Orders from soldProducts
+        //Past Orders from soldProducts
         return soldProducts.size();
+    }
+    public boolean logOffSeller(){
+        return false;
+    }
+    public UUID getUUID() {
+        return sUUID;
     }
 }

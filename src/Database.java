@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Database {
     ArrayList<User> users = new ArrayList<>(
@@ -50,6 +48,7 @@ public class Database {
                                             )
                                     )
                             ),
+                            new ArrayList<>(),
                             new ArrayList<>()
                     ),
                     new User(
@@ -97,6 +96,7 @@ public class Database {
                                             )
                                     )
                             ),
+                            new ArrayList<>(),
                             new ArrayList<>()
                     )
             )
@@ -176,9 +176,10 @@ public class Database {
         System.out.println("Initialized database connection!");
     }
 
+
     public User getUserByName(String name) {
         for (User u : users) {
-            if (u.name.equals(name)) {
+            if (Objects.equals(u.name, name)) {
                 return u;
             }
         }
@@ -188,7 +189,7 @@ public class Database {
 
     public User getUserByUsername(String username) {
         for (User u : users) {
-            if (u.username.equals(username)) {
+            if (Objects.equals(u.username, username)) {
                 return u;
             }
         }
@@ -222,5 +223,95 @@ public class Database {
             }
         }
         return null;
+    }
+
+    public UUID addProduct(Product product) {
+        if (product == null) return null;
+        if (product.productName.isEmpty()) return null;
+        if (product.description.isEmpty()) return null;
+        if (product.price <= 0) return null;
+        if (products.contains(product)) return null;
+        products.add(product);
+        return product.getPUUID();
+    }
+
+    public ArrayList<UUID> addProducts(ArrayList<Product> products) {
+        ArrayList<UUID> uuids = new ArrayList<>();
+        for (Product product : products) {
+            UUID tU = addProduct(product);
+            if (tU == null) continue;
+            uuids.add(tU);
+        }
+        return uuids;
+    }
+
+    public boolean removeProduct(UUID productUUID) {
+        return products.removeIf(prod -> prod.getPUUID().equals(productUUID));
+    }
+
+    public ArrayList<Boolean> removeProducts(ArrayList<UUID> productUUIDs) {
+        ArrayList<Boolean> x = new ArrayList<>();
+        for (UUID uuid : productUUIDs) {
+            x.add(removeProduct(uuid));
+        }
+        return x;
+    }
+
+    public UUID addUser(User user) {
+        if (user == null) return null;
+        if (users.contains(user)) return null;
+        users.add(user);
+        return user.getUUID();
+    }
+
+    public ArrayList<UUID> addUsers(ArrayList<User> users) {
+        ArrayList<UUID> uuids = new ArrayList<>();
+        for (User user : users) {
+            UUID tU = addUser(user);
+            if (tU == null) continue;
+            uuids.add(tU);
+        }
+        return uuids;
+    }
+
+    public boolean removeUser(UUID userUUID) {
+        return users.removeIf(user -> user.getUUID().equals(userUUID));
+    }
+
+    public ArrayList<Boolean> removeUsers(ArrayList<UUID> userUUIDs) {
+        ArrayList<Boolean> x = new ArrayList<>();
+        for (UUID uuid : userUUIDs) {
+            x.add(removeUser(uuid));
+        }
+        return x;
+    }
+
+    public UUID addSeller(Seller seller) {
+        if (seller == null) return null;
+        if (sellers.contains(seller)) return null;
+        sellers.add(seller);
+        return seller.getUUID();
+    }
+
+    public ArrayList<UUID> addSellers(Seller seller) {
+        ArrayList<UUID> uuids = new ArrayList<>();
+        for (Seller s : sellers) {
+            UUID tU = addSeller(s);
+            if (tU == null) continue;
+            uuids.add(tU);
+        }
+        return uuids;
+    }
+
+    public boolean removeSeller(UUID sellerUUID) {
+        return sellers.removeIf(sel -> sel.getUUID().equals(sellerUUID));
+    }
+
+    public ArrayList<Boolean> removeSellers(ArrayList<UUID> sellerUUIDs) {
+        ArrayList<Boolean> x = new ArrayList<>();
+        for (UUID uuid : sellerUUIDs) {
+            x.add(removeSeller(uuid));
+        }
+        return x;
     }
 }
