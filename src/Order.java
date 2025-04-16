@@ -26,15 +26,11 @@ public class Order {
         return cart;
     }
 
-    public boolean viewOrder() {
-        if (cart.size() != quantities.size() || cart.isEmpty()) return false;
-
-        System.out.println("Order Num " + orderID);
+    public void viewOrder() {
+        System.out.println("Order #" + orderID + ":");
 
         for (int i = 0; i < cart.size(); i++) {
-            System.out.println(cart.get(i) + " | Quantity: " + quantities.get(i));
+            System.out.println(" + " + cart.get(i) + " | Quantity: " + quantities.get(i));
         }
-
-        return true;
     }
 }

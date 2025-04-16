@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.UUID;
 
 public class User {
@@ -13,6 +14,56 @@ public class User {
     ArrayList<Integer> quantities;
 
     private UUID uUUID;
+
+    public User() {
+        Random random = new Random();
+
+        // Randomly generate name, email, username, and password
+        this.name = "User" + random.nextInt(1000);
+        this.email = "user" + random.nextInt(1000) + "@example.com";
+        this.username = "user" + random.nextInt(1000);
+        this.password = generateRandomPassword();
+
+        // Random UUID for user
+        this.uUUID = UUID.randomUUID();
+
+        // Create random shipping address
+        this.shippingAddress = new ShippingAddress(
+                "Street " + random.nextInt(100),
+                "City " + random.nextInt(100),
+                "State " + random.nextInt(50),
+                "Country " + random.nextInt(50),
+                "ZIP" + random.nextInt(10000)
+        );
+
+        // Create random payment info
+        this.paymentInformation = new PaymentInfo(
+                "4111111111111111",  // Just a placeholder for a valid-looking card number
+                random.nextInt(12) + 1,  // Month
+                2025 + random.nextInt(5),  // Year (current year + 0 to 5 years)
+                random.nextInt(1000) + 100  // CVV
+        );
+
+        // Random order history and cart initialization
+        this.orderHistory = new ArrayList<>();
+        this.cart = new ArrayList<>();
+        this.quantities = new ArrayList<>();
+
+        // Optionally, add a random product to the cart
+        Product randomProduct = new Product("Product" + random.nextInt(1000), random.nextDouble() * 100, "Random product description");
+        this.cart.add(randomProduct);
+        this.quantities.add(random.nextInt(5) + 1);  // Random quantity from 1 to 5
+    }
+
+    private String generateRandomPassword() {
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder password = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < 8; i++) {
+            password.append(characters.charAt(random.nextInt(characters.length())));
+        }
+        return password.toString();
+    }
 
     User(
         String name,
@@ -86,15 +137,13 @@ public class User {
         this.quantities.add(quantity);
     }
 
-    public int viewPastOrders() {
+    public void viewPastOrders() {
         for (Order order : orderHistory) {
             order.viewOrder();
         }
-
-        return orderHistory.size();
     }
 
-    public Order viewOrders(int number) {
+    public Order getOrder(int number) {
         if (number > orderHistory.size()) return null;
         return orderHistory.get(number);
     }

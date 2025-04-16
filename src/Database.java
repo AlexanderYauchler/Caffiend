@@ -206,6 +206,19 @@ public class Database {
         return false;
     }
 
+    public boolean loginSeller(String username, String password) {
+        for (Seller s : sellers) {
+            if (s.username.equals(username) && s.password.equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public ArrayList<Product> searchProducts(String search) {
+        return searchProducts(search, false);
+    }
+
     public ArrayList<Product> searchProducts(String name, boolean byDescription) {
         ArrayList<Product> res = new ArrayList<>();
         if (byDescription) {
@@ -221,6 +234,8 @@ public class Database {
                 }
             }
         }
+        return res;
+    }
 
     public Seller getSellerByName(String name) {
         for (Seller s : sellers) {
@@ -231,34 +246,36 @@ public class Database {
         return null;
     }
 
-    public UUID addProduct(Product product) {
+    public UUID addProduct(Product product, Seller seller) {
         if (product == null) return null;
         if (product.productName.isEmpty()) return null;
         if (product.description.isEmpty()) return null;
         if (product.price <= 0) return null;
         if (products.contains(product)) return null;
         products.add(product);
+        seller.products.add(product);
         return product.getPUUID();
     }
 
-    public ArrayList<UUID> addProducts(ArrayList<Product> products) {
+    public ArrayList<UUID> addProducts(ArrayList<Product> products, Seller seller) {
         ArrayList<UUID> uuids = new ArrayList<>();
         for (Product product : products) {
-            UUID tU = addProduct(product);
+            UUID tU = addProduct(product, seller);
             if (tU == null) continue;
             uuids.add(tU);
         }
         return uuids;
     }
 
-    public boolean removeProduct(UUID productUUID) {
-        return products.removeIf(prod -> prod.getPUUID().equals(productUUID));
+    public boolean removeProduct(UUID productUUID, Seller seller) {
+        return products.removeIf(prod -> prod.getPUUID().equals(productUUID)) &&
+               seller.products.removeIf(prod -> prod.getPUUID().equals(productUUID));
     }
 
-    public ArrayList<Boolean> removeProducts(ArrayList<UUID> productUUIDs) {
+    public ArrayList<Boolean> removeProducts(ArrayList<UUID> productUUIDs, Seller seller) {
         ArrayList<Boolean> x = new ArrayList<>();
         for (UUID uuid : productUUIDs) {
-            x.add(removeProduct(uuid));
+            x.add(removeProduct(uuid, seller));
         }
         return x;
     }
@@ -299,7 +316,7 @@ public class Database {
         return seller.getUUID();
     }
 
-    public ArrayList<UUID> addSellers(Seller seller) {
+    public ArrayList<UUID> addSellers(ArrayList<Seller> sellers) {
         ArrayList<UUID> uuids = new ArrayList<>();
         for (Seller s : sellers) {
             UUID tU = addSeller(s);
