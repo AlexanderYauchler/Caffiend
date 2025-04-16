@@ -206,15 +206,21 @@ public class Database {
         return false;
     }
 
-    public ArrayList<Product> searchProducts(String name) {
+    public ArrayList<Product> searchProducts(String name, boolean byDescription) {
         ArrayList<Product> res = new ArrayList<>();
-        for (Product p : products) {
-            if (p.productName.contains(name)) {
-                res.add(p);
+        if (byDescription) {
+            for (Product p : products) {
+                if (p.description.contains(name)) {
+                    res.add(p);
+                }
+            }
+        } else {
+            for (Product p : products) {
+                if (p.productName.contains(name)) {
+                    res.add(p);
+                }
             }
         }
-        return res;
-    }
 
     public Seller getSellerByName(String name) {
         for (Seller s : sellers) {

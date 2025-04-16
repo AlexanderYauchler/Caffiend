@@ -10,8 +10,6 @@ public class Product {
     public final String currencyName = "Yuan";
     public final String currencySymbol = "¥";
 
-    static int idNum = 0;
-
     Product(
         String productName,
         double price,

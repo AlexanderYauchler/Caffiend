@@ -1,16 +1,26 @@
 import java.util.*;
 
+enum ShippingStatus {
+    WAITING_TO_SHIP,
+    IN_TRANSIT,
+    ARRIVED
+}
+
 public class ShippingService {
 
     // Internal class to hold shipping records
     static class ShippingRecord {
         String username;
+        String courier;
+        ShippingStatus status;
         ShippingAddress address;
         ArrayList<Product> items;
         Date shippedOn;
 
-        public ShippingRecord(String username, ShippingAddress address, ArrayList<Product> items, Date shippedOn) {
+        public ShippingRecord(String username, String courier, ShippingStatus status, ShippingAddress address, ArrayList<Product> items, Date shippedOn) {
             this.username = username;
+            this.courier = courier;
+            this.status = status;
             this.address = address;
             this.items = new ArrayList<Product>();
             this.shippedOn = shippedOn;
@@ -35,7 +45,7 @@ public class ShippingService {
     }
 
     // Method to simulate shipping a package for a user
-    public void shipPackage(String username, Order order) {
+    public void shipPackage(String username, String courier, ShippingStatus status, Order order) {
         ShippingAddress shippingAddress = database.getUserByUsername(username).getShippingAddress();
 
         if (shippingAddress == null) {
@@ -49,7 +59,7 @@ public class ShippingService {
         }
 
         // Simulate shipping
-        ShippingRecord record = new ShippingRecord(username, shippingAddress, order.getCart(), new Date());
+        ShippingRecord record = new ShippingRecord(username, courier, status, shippingAddress, order.getCart(), new Date());
         shippingHistory.add(record);
 
         System.out.println("Package shipped successfully to " + username);
