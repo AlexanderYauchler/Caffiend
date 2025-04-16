@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class User {
     String name;
@@ -9,6 +10,9 @@ public class User {
     PaymentInfo paymentInformation;
     ArrayList<Order> orderHistory;
     ArrayList<Product> cart;
+    ArrayList<Integer> quantities;
+
+    private UUID uUUID;
 
     User(
         String name,
@@ -18,16 +22,27 @@ public class User {
         ShippingAddress shippingAddress,
         PaymentInfo paymentInformation,
         ArrayList<Order> orderHistory,
-        ArrayList<Product> cart
+        ArrayList<Product> cart,
+        ArrayList<Integer> quantities
     ) {
         this.name = name;
         this.email = email;
         this.username = username;
+        this.uUUID = UUID.randomUUID();
         this.password = password;
         this.shippingAddress = shippingAddress;
         this.paymentInformation = paymentInformation;
         this.orderHistory = orderHistory;
         this.cart = cart;
+        this.quantities = quantities;
+    }
+
+    public boolean loginUser(Database db) {
+        return false;
+    }
+
+    public boolean signUpUser(Database db) {
+        return false;
     }
 
     public void updateName(String name) {
@@ -66,8 +81,9 @@ public class User {
         this.cart = cart;
     }
 
-    public void addToCart(Product product) {
+    public void addToCart(Product product, int quantity) {
         this.cart.add(product);
+        this.quantities.add(quantity);
     }
 
     public int viewPastOrders() {
@@ -78,10 +94,30 @@ public class User {
         return orderHistory.size();
     }
 
+    public Order viewOrders(int number) {
+        if (number > orderHistory.size()) return null;
+        return orderHistory.get(number);
+    }
+
+    public UUID getUUID() {
+        return uUUID;
+    }
+
     @Override
     public String toString() {
         return "User " + username + "\n-----------------------\n Name : " + name
                 + "\n Email : " + email + "\n Password : " + password;
 
+    }
+
+    public ArrayList<String> searchProducts(String query) {
+        return new ArrayList<>();
+    }
+    
+    public boolean purchaseProducts() {
+        return false;
+    }
+    public boolean logOffUser(){
+        return false;
     }
 }
