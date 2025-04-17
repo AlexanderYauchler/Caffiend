@@ -19,7 +19,7 @@ public class Database {
                                     "4032039269355774",
                                     2,
                                     2028,
-                                    672
+                                    "672"
                             ),
                             new ArrayList<>(
                                     List.of(
@@ -67,7 +67,194 @@ public class Database {
                                     "4716108999716531",
                                     11,
                                     2026,
-                                    123
+                                    "123"
+                            ),
+                            new ArrayList<>(
+                                    List.of(
+                                            new Order(
+                                                    new ArrayList<>(
+                                                            List.of(
+                                                                    new Product(
+                                                                            "Ultra Red Monster Energy 24 Pack",
+                                                                            500,
+                                                                            "Change can be a good thing when you make the most of it…like those endless summers working mindless jobs. They pay just enough to survive (party), but somehow you save enough for that last road trip before starting “real life.” In homage to coming of age in America and in keeping with our Monster family tradition, comes another change worth making. White, Blue, and now Ultra Red Monster: Light, crisp, refreshing with zero calories and zero sugar. Made right here in the USA."
+                                                                    )
+                                                            )
+                                                    ),
+                                                    new ArrayList<>(
+                                                            List.of(
+                                                                    3
+                                                            )
+                                                    ),
+                                                    new ShippingAddress(
+                                                            "742 Evergreen Terrace",
+                                                            "Springfield",
+                                                            "Illinois",
+                                                            "United States",
+                                                            "62704"
+                                                    )
+                                            )
+                                    )
+                            ),
+                            new ArrayList<>(),
+                            new ArrayList<>()
+                    ),
+                    new User(
+                            "No Card Holder",
+                            "nocard.holder@gmail.com",
+                            "nocard",
+                            "pass123",
+                            new ShippingAddress(
+                                    "742 Evergreen Terrace",
+                                    "Springfield",
+                                    "Illinois",
+                                    "United States",
+                                    "62704"
+                            ),
+                            null,
+                            new ArrayList<>(
+                                    List.of(
+                                            new Order(
+                                                    new ArrayList<>(
+                                                            List.of(
+                                                                    new Product(
+                                                                            "Ultra Red Monster Energy 24 Pack",
+                                                                            500,
+                                                                            "Change can be a good thing when you make the most of it…like those endless summers working mindless jobs. They pay just enough to survive (party), but somehow you save enough for that last road trip before starting “real life.” In homage to coming of age in America and in keeping with our Monster family tradition, comes another change worth making. White, Blue, and now Ultra Red Monster: Light, crisp, refreshing with zero calories and zero sugar. Made right here in the USA."
+                                                                    )
+                                                            )
+                                                    ),
+                                                    new ArrayList<>(
+                                                            List.of(
+                                                                    3
+                                                            )
+                                                    ),
+                                                    new ShippingAddress(
+                                                            "742 Evergreen Terrace",
+                                                            "Springfield",
+                                                            "Illinois",
+                                                            "United States",
+                                                            "62704"
+                                                    )
+                                            )
+                                    )
+                            ),
+                            new ArrayList<>(),
+                            new ArrayList<>()
+                    ),
+                    new User(
+                            "Expired Card Holder",
+                            "expiredcardholder@gmail.com",
+                            "mycardisfraud",
+                            "oopsies123",
+                            new ShippingAddress(
+                                    "742 Evergreen Terrace",
+                                    "Springfield",
+                                    "Illinois",
+                                    "United States",
+                                    "62704"
+                            ),
+                            new PaymentInfo(
+                                    "4716108999716531",
+                                    11,
+                                    2023,
+                                    "123"
+                            ),
+                            new ArrayList<>(
+                                    List.of(
+                                            new Order(
+                                                    new ArrayList<>(
+                                                            List.of(
+                                                                    new Product(
+                                                                            "Ultra Red Monster Energy 24 Pack",
+                                                                            500,
+                                                                            "Change can be a good thing when you make the most of it…like those endless summers working mindless jobs. They pay just enough to survive (party), but somehow you save enough for that last road trip before starting “real life.” In homage to coming of age in America and in keeping with our Monster family tradition, comes another change worth making. White, Blue, and now Ultra Red Monster: Light, crisp, refreshing with zero calories and zero sugar. Made right here in the USA."
+                                                                    )
+                                                            )
+                                                    ),
+                                                    new ArrayList<>(
+                                                            List.of(
+                                                                    3
+                                                            )
+                                                    ),
+                                                    new ShippingAddress(
+                                                            "742 Evergreen Terrace",
+                                                            "Springfield",
+                                                            "Illinois",
+                                                            "United States",
+                                                            "62704"
+                                                    )
+                                            )
+                                    )
+                            ),
+                            new ArrayList<>(),
+                            new ArrayList<>()
+                    ),
+                    new User(
+                            "Missing Card Number",
+                            "nonumber@gmail.com",
+                            "badnum",
+                            "badpass123",
+                            new ShippingAddress(
+                                    "742 Evergreen Terrace",
+                                    "Springfield",
+                                    "Illinois",
+                                    "United States",
+                                    "62704"
+                            ),
+                            new PaymentInfo(
+                                    null,
+                                    11,
+                                    2026,
+                                    "123"
+                            ),
+                            new ArrayList<>(
+                                    List.of(
+                                            new Order(
+                                                    new ArrayList<>(
+                                                            List.of(
+                                                                    new Product(
+                                                                            "Ultra Red Monster Energy 24 Pack",
+                                                                            500,
+                                                                            "Change can be a good thing when you make the most of it…like those endless summers working mindless jobs. They pay just enough to survive (party), but somehow you save enough for that last road trip before starting “real life.” In homage to coming of age in America and in keeping with our Monster family tradition, comes another change worth making. White, Blue, and now Ultra Red Monster: Light, crisp, refreshing with zero calories and zero sugar. Made right here in the USA."
+                                                                    )
+                                                            )
+                                                    ),
+                                                    new ArrayList<>(
+                                                            List.of(
+                                                                    3
+                                                            )
+                                                    ),
+                                                    new ShippingAddress(
+                                                            "742 Evergreen Terrace",
+                                                            "Springfield",
+                                                            "Illinois",
+                                                            "United States",
+                                                            "62704"
+                                                    )
+                                            )
+                                    )
+                            ),
+                            new ArrayList<>(),
+                            new ArrayList<>()
+                    ),
+                    new User(
+                            "no ccv megamind",
+                            "whatsaccv@gmail.com",
+                            "noccv",
+                            "caffiend123",
+                            new ShippingAddress(
+                                    "742 Evergreen Terrace",
+                                    "Springfield",
+                                    "Illinois",
+                                    "United States",
+                                    "62704"
+                            ),
+                            new PaymentInfo(
+                                    "4716108999716531",
+                                    11,
+                                    2026,
+                                    null
                             ),
                             new ArrayList<>(
                                     List.of(
@@ -151,7 +338,7 @@ public class Database {
                                     "6011345698765432",
                                     8,
                                     2027,
-                                    456
+                                    "456"
                             ),
                             new ArrayList<>(
                                     List.of(
