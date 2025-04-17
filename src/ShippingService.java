@@ -26,6 +26,18 @@ public class ShippingService {
             this.shippedOn = shippedOn;
         }
 
+        private void setStatus(ShippingStatus status) {
+            this.status = status;
+        }
+
+        private ShippingStatus getStatus() {
+            return this.status;
+        }
+
+        private void setCourier(String courier) {
+            this.courier = courier;
+        }
+
         @Override
         public String toString() {
             return "Shipped to: " + username +
@@ -63,6 +75,23 @@ public class ShippingService {
         shippingHistory.add(record);
 
         System.out.println("Package shipped successfully to " + username);
+    }
+
+    public boolean setStatus(ShippingStatus status, int index) {
+        if (index >= shippingHistory.size()) return false;
+        shippingHistory.get(index).setStatus(status);
+        return true;
+    }
+
+    public boolean setCourier(String courier, int index) {
+        if (index >= shippingHistory.size()) return false;
+        shippingHistory.get(index).setCourier(courier);
+        return true;
+    }
+
+    public ShippingStatus getStatus(int index) {
+        if (index >= shippingHistory.size()) return null;
+        return shippingHistory.get(index).getStatus();
     }
 
     // Method to show shipping history for a specific user

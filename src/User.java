@@ -41,7 +41,7 @@ public class User {
                 "4111111111111111",  // Just a placeholder for a valid-looking card number
                 random.nextInt(12) + 1,  // Month
                 2025 + random.nextInt(5),  // Year (current year + 0 to 5 years)
-                random.nextInt(1000) + 100  // CVV
+                Integer.toString(random.nextInt(1000) + 100)  // CVV
         );
 
         // Random order history and cart initialization

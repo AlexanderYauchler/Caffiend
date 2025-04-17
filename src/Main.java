@@ -50,7 +50,7 @@ public class Main {
         // Single product returned
         System.out.println(
                 "Product Search 'Monster Energy Zero Ultra' [1 Result]:\n + " +
-                database.searchProducts("Monster Energy Zero Ultra")
+                        database.searchProducts("Monster Energy Zero Ultra")
         );
         System.out.println();
 
@@ -117,19 +117,19 @@ public class Main {
         // === Make Payment ===
 
         // Successful Payment
-        // TODO
+        System.out.println(paymentService.paySeller(database.getUserByUsername("JaneDoe"), database.getSellerByName("Alice Johnson"), 100.0));;
 
         // No Card Number
-        // TODO
+        System.out.println(paymentService.paySeller(database.getUserByUsername("badnum"), database.getSellerByName("Alice Johnson"), 100.0));;
 
         // No Expiration Date
-        // TODO
+        System.out.println(paymentService.paySeller(database.getUserByUsername("mycardisfraud"), database.getSellerByName("Alice Johnson"), 100.0));;
 
         // No CCV
-        // TODO
+        System.out.println(paymentService.paySeller(database.getUserByUsername("noccv"), database.getSellerByName("Alice Johnson"), 100.0));;
 
         // No Card Information
-        // TODO
+        System.out.println(paymentService.paySeller(database.getUserByUsername("nocard"), database.getSellerByName("Alice Johnson"), 100.0));;
         System.out.println();
 
 
@@ -211,19 +211,20 @@ public class Main {
         shippingService.shipPackage(user.username, "FedEx", ShippingStatus.WAITING_TO_SHIP, order);
 
         // Set courier to UPS
-        // TODO
+        shippingService.setCourier("UPS", 0);
 
         // Get Shipping Status of Product
-        // TODO
+        ShippingStatus status = shippingService.getStatus(0);
+        System.out.println("Shipping Status: " + status);
 
         // Get Shipping Status of Invalid Product
-        // TODO
+        System.out.println(shippingService.getStatus(10)); // invalid order
 
         // Set Shipping Status to "In-Transit"
-        // TODO
+        shippingService.setStatus(ShippingStatus.IN_TRANSIT, 0);
 
         // Set Invalid Courier
-        // TODO
+        shippingService.setCourier("UPS", 2); // returns false
         System.out.println();
 
 
