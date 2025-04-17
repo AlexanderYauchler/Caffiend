@@ -11,6 +11,10 @@ public class PaymentService {
     }
 
     public boolean paySeller(User user, Seller seller, double amount) {
+        if (user.paymentInformation == null) return false;
+        if (user.paymentInformation.cardNo == null) return false;
+        if (user.paymentInformation.expMonth > 12 || user.paymentInformation.expMonth < 1 || user.paymentInformation.expYear < 2025) return false; // no invalid dates
+        if (user.paymentInformation.ccv == null || user.paymentInformation.ccv.length() != 3) return false;
 		// Use the username from the User object
 		String paymentRecord = "User " + user.username +
 				" with card number " + user.paymentInformation.cardNo +
