@@ -2,13 +2,13 @@ public class PaymentInfo {
     String cardNo;
     int expMonth;
     int expYear;
-    int ccv;
+    String ccv;
 
     PaymentInfo(
         String cardNo,
         int expMonth,
         int expYear,
-        int ccv
+        String ccv
     ) {
         this.cardNo = cardNo;
         this.expMonth = expMonth;
